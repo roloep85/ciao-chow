@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useState } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ const RegisterForm = () => {
     email: '',
     password: '',
   });
+
+  const [token, setToken] = useState('');
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -23,10 +25,17 @@ const RegisterForm = () => {
         body: JSON.stringify(formData),
       }
     );
-
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const data = await response.json();
-    console.log(data);
+    setToken(data.jwt);
   };
+  const router = useRouter();
+
+  if (token != '') {
+    router.push(`/chows?jwt=${token}`);
+  }
   const handleInputChange = (event: any) => {
     setFormData({
       ...formData,
