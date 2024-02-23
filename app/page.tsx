@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { montserrat_alternates } from './layout';
+import { Montserrat_Alternates } from 'next/font/google';
+
+const montserrat_alternates = Montserrat_Alternates({
+  subsets: ['latin'],
+  weight: '600',
+});
 
 export default function Home() {
   return (
@@ -8,7 +13,7 @@ export default function Home() {
       <section className='relative py-16 overflow-hidden'>
         <div className='absolute ellipse -z-10'></div>
         <h1
-          className={`${montserrat_alternates.variable} font-display text-white text-center mb-16`}
+          className={`${montserrat_alternates.className} text-white text-center mb-16`}
         >
           CiaoChow{' '}
           <Image
