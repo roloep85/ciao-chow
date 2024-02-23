@@ -24,8 +24,10 @@ const Chows = async () => {
     const data = await res.json();
     return data;
   }
-  const searchParams = useSearchParams();
-  const jwt = searchParams.get('jwt');
+  // const searchParams = useSearchParams();
+  // const jwt = searchParams.get('jwt');
+  const jwt =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ5LCJpYXQiOjE3MDg2ODUxNDgsImV4cCI6MTcxMTI3NzE0OH0.Cjfiqk9b0uOJCqTx14TJD6jLsN4HY6elFiI3v-ujvqs';
   const response = await getChows(jwt);
   const firstChow = response.data[0];
   const secondChow = response.data[1];
